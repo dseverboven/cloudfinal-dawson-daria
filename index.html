@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+		<script type="text/javascript" src="/api.js"></script>
+		
+    </head>
+
+    <body>
+        <h1>Lyric Generator using AI</h1>
+        <p class="intro">This lyric generator using the Lyrics Generator (CPU) by Figure Eight.<br></p>
+
+        <p class="details"> Details: <br>This model will generate lyrics for your next Billboard-topping single. 
+            It was trained on a corpus of songs of 139 artists, including those of many of the 
+            100 most popular artists in America. The API takes two inputs: an artist name and seed 
+            words that the song could start with and will generate a new song in the lyrical style 
+            of the specified artist.
+        </p>
+        <br><br>
+        
+        <div class="form">
+            <h2>Generate Lyrics</h2>
+			<br><br>			
+			<input id="artist" type="text" name="artist" placeholder="Artist Name"><br>
+			<input id="seed" type="text" name="seed" placeholder="Sample Word (seed)"><br><br>
+			<button onclick="generate()">Generate Lyrics</button>
+        </div>
+		
+		<br><br>
+		<h2>Result</h2>
+		<br><br>
+		<textarea id="result" rows="20" cols="50" style="white-space: pre-wrap;"></textarea>
+        
+    </body>
+</html>
