@@ -1,17 +1,10 @@
 
 
-
-
-// async function generate() {
-
-//     console.log('hi')
-//     var new_actor = await fetch("/new")
-    
-
-// }
-
 const userAction = async () => {
-    myBody = {"instances": [{"artist":"Migos", "seed": "corn"}]}
+    artist =document.getElementById("artist").value
+    seed = document.getElementById("seed").value
+
+    myBody = {"instances": [{"artist":artist, "seed": seed}]}
     const response = await fetch('https://ovc5idyes0.execute-api.us-east-1.amazonaws.com/dev-1/', {
         headers: {
             'Content-Type': 'application/json', 
@@ -24,7 +17,12 @@ const userAction = async () => {
       
     });
     const myJson = await response.json(); //extract JSON from the http response
-    console.log(myJson.predictions)
+    var y = myJson.predictions[0].lyrics;
+    var test = y.replace('\\\\n', '\n')
+    console.log(test)
+    document.getElementById("result").value = test;
+
+    
   }
    
 
