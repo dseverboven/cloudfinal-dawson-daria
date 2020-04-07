@@ -25,8 +25,8 @@
         );
         const myJson = await response.json(); //extract JSON from the http response
         var lyrics = myJson.predictions[0].lyrics;
-        var new_lyrics = lyrics.replace("\\n", " ");
-        console.log(new_lyrics);
+        var new_lyrics = lyrics.split("\\\\n").join('\n');
+        
         document.getElementById("results").innerHTML = new_lyrics;
       };
     </script>
