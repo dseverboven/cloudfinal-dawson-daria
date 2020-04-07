@@ -1,35 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-		<script type="application/javascript" src="api.js"></script>
-		
-    </head>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <script type="application/javascript">
+      const userAction = async () => {
+        artist = document.getElementById("artist").value;
+        seed = document.getElementById("seed").value;
 
-    <body>
-        <h1>Lyric Generator using AI</h1>
-        <p class="intro">This lyric generator using the Lyrics Generator (CPU) by Figure Eight.<br></p>
+        myBody = { instances: [{ artist: artist, seed: seed }] };
+        const response = await fetch(
+          "https://ovc5idyes0.execute-api.us-east-1.amazonaws.com/dev-1/",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(myBody), // string or object
+          }
+        );
+        const myJson = await response.json(); //extract JSON from the http response
+        var lyrics = myJson.predictions[0].lyrics;
+        var new_lyrics = lyrics.replace("\\n", " ");
+        console.log(new_lyrics);
+        document.getElementById("results").innerHTML = new_lyrics;
+      };
+    </script>
+  </head>
 
-        <p class="details"> Details: <br>This model will generate lyrics for your next Billboard-topping single. 
-            It was trained on a corpus of songs of 139 artists, including those of many of the 
-            100 most popular artists in America. The API takes two inputs: an artist name and seed 
-            words that the song could start with and will generate a new song in the lyrical style 
-            of the specified artist.
-        </p>
-        <br><br>
-        
-        <div class="form">
-            <h2>Generate Lyrics</h2>
-			<br><br>			
-			<input id="artist" type="text" name="artist" placeholder="Artist Name"><br>
-			<input id="seed" type="text" name="seed" placeholder="Sample Word (seed)"><br><br>
-			<button onclick="userAction()">Generate Lyrics</button>
-        </div>
-		
-		<br><br>
-		<h2 >Result</h2>
-		<br><br>
-		<textarea id="result" rows="20" cols="50" style="white-space: pre-wrap;"></textarea>
-        
-    </body>
+  <body>
+    <h1>Lyric Generator using AI</h1>
+    <p class="intro">
+      This lyric generator using the Lyrics Generator (CPU) by Figure Eight.<br />
+    </p>
+
+    <p class="details">
+      Details: <br />This model will generate lyrics for your next
+      Billboard-topping single. It was trained on a corpus of songs of 139
+      artists, including those of many of the 100 most popular artists in
+      America. The API takes two inputs: an artist name and seed words that the
+      song could start with and will generate a new song in the lyrical style of
+      the specified artist.
+    </p>
+    <br /><br />
+
+    <div class="form">
+      <h2>Generate Lyrics</h2>
+      <br /><br />
+      <input
+        id="artist"
+        type="text"
+        name="artist"
+        placeholder="Artist Name"
+      /><br />
+      <input
+        id="seed"
+        type="text"
+        name="seed"
+        placeholder="Sample Word (seed)"
+      /><br /><br />
+      <button onclick="userAction()">Generate Lyrics</button>
+    </div>
+
+    <br /><br />
+    <h2>Result</h2>
+    <br /><br />
+    <div id="results" style="white-space: pre-line;">
+     
+    </div>
+  </body>
 </html>
