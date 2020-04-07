@@ -2,31 +2,30 @@
 
 
 
-async function generate() {
+// async function generate() {
 
-    console.log('hi')
-    var new_actor = await fetch("/new")
+//     console.log('hi')
+//     var new_actor = await fetch("/new")
     
 
-}
+// }
 
-// const userAction = async () => {
-//     myBody = {"instances": [{"artist":"Migos", "seed": "corn"}]}
-//     const response = await fetch('https://ovc5idyes0.execute-api.us-east-1.amazonaws.com/dev-1/', {
-//         headers: {
-//             'Content-Type': 'application/json', 
-//             'Access-Control-Allow-Origin': '*' ,
+const userAction = async () => {
+    myBody = {"instances": [{"artist":"Migos", "seed": "corn"}]}
+    const response = await fetch('https://ovc5idyes0.execute-api.us-east-1.amazonaws.com/dev-1/', {
+        headers: {
+            'Content-Type': 'application/json', 
+            'Access-Control-Allow-Origin': '*' ,
             
-//         },
-//       method: 'POST',
-//       credentials: "omit",
-//       mode:'cors',
-//       body: JSON.stringify(myBody), // string or object
+        },
+      method: 'POST',
+      mode:'cors',
+      body: JSON.stringify(myBody), // string or object
       
-//     });
-//     const myJson = await response.json(); //extract JSON from the http response
-//     console.log(myJson)
-//   }
+    });
+    const myJson = await response.json(); //extract JSON from the http response
+    console.log(myJson.predictions)
+  }
    
 
 //     // var input, filter, a;

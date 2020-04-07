@@ -11,16 +11,16 @@ app.use(express.static(path.join(__dirname, 'routes')));
 
 
 
-Request.post({
-    "headers": { "content-type": "application/json" },
-    "url": "https://ovc5idyes0.execute-api.us-east-1.amazonaws.com/dev-1/",
-    "body": JSON.stringify({"instances": [{"artist":"Migos", "seed": "corn"}]})
-}, (error, response, body) => {
-    if(error) {
-        return console.dir(error);
-    }
-    console.dir(JSON.parse(body));
-});
+// Request.post({
+//     "headers": { "content-type": "application/json" },
+//     "url": "https://ovc5idyes0.execute-api.us-east-1.amazonaws.com/dev-1/",
+//     "body": JSON.stringify({"instances": [{"artist":"Migos", "seed": "corn"}]})
+// }, (error, response, body) => {
+//     if(error) {
+//         return console.dir(error);
+//     }
+//     console.dir(JSON.parse(body));
+// });
 
 
 
